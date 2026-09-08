@@ -43,6 +43,10 @@ let payoutConnectorList: array<connectorTypes> = [
   PayoutProcessor(SANTANDER),
   PayoutProcessor(DEUTSCHEBANK),
   PayoutProcessor(GOTYME),
+  PayoutProcessor(MTNMOBILEMONEY),
+  PayoutProcessor(AIRTELTIGOCASH),
+  PayoutProcessor(TELECELCASH),
+  PayoutProcessor(GHIPSS),
 ]
 
 let payoutConnectorListForLive: array<connectorTypes> = [
@@ -200,6 +204,10 @@ let connectorList: array<connectorTypes> = [
   Processors(CITIGATE),
   Processors(ILIXIUM),
   Processors(WORLDPAYRAFT),
+  Processors(MTNMOBILEMONEY),
+  Processors(AIRTELTIGOCASH),
+  Processors(TELECELCASH),
+  Processors(GHIPSS),
 ]
 
 let connectorListForLive: array<connectorTypes> = [
@@ -768,6 +776,22 @@ let worldpayraftInfo = {
   description: "Native RAFT is Worldpay's RESTful API for direct access to their core authorization processing platform, supporting credit, debit, gift card, and alternate payment methods for enterprise merchants in the USA.",
 }
 
+let mtnMobileMoneyInfo = {
+  description: "MTN Mobile Money (MoMo) is a mobile wallet service that lets users send, receive, store money, and pay for goods and services using their mobile phones.",
+}
+
+let airtelTigoCashInfo = {
+  description: "AirtelTigo Cash is a mobile money service that lets users send, receive, and pay for goods and services using their mobile wallets.",
+}
+
+let telecelCashInfo = {
+  description: "Telecel Cash is a mobile financial service that lets users send, receive, and pay for goods and services using their mobile phones.",
+}
+
+let ghipssInfo = {
+  description: "GHIPSS (Ghana Interbank Payment and Settlement Systems) provides interbank payment and settlement infrastructure for Ghana, including gh-link cards and mobile money interoperability.",
+}
+
 let signifydInfo = {
   description: "One platform to protect the entire shopper journey end-to-end",
   validate: [
@@ -1061,6 +1085,10 @@ let getConnectorNameString = (connector: processorTypes) =>
   | CITIGATE => "citigate"
   | ILIXIUM => "ilixium"
   | WORLDPAYRAFT => "worldpayraft"
+  | MTNMOBILEMONEY => "mtn_mobile_money"
+  | AIRTELTIGOCASH => "airtel_tigo_cash"
+  | TELECELCASH => "telecel_cash"
+  | GHIPSS => "ghipss"
   }
 
 let getPayoutProcessorNameString = (payoutProcessor: payoutProcessorTypes) =>
@@ -1085,6 +1113,10 @@ let getPayoutProcessorNameString = (payoutProcessor: payoutProcessorTypes) =>
   | SANTANDER => "santander"
   | DEUTSCHEBANK => "deutschebank"
   | GOTYME => "gotyme_sanlam"
+  | MTNMOBILEMONEY => "mtn_mobile_money"
+  | AIRTELTIGOCASH => "airtel_tigo_cash"
+  | TELECELCASH => "telecel_cash"
+  | GHIPSS => "ghipss"
   }
 
 let getThreeDsAuthenticatorNameString = (threeDsAuthenticator: threeDsAuthenticatorTypes) =>
@@ -1279,6 +1311,10 @@ let getConnectorNameTypeFromString = (connector, ~connectorType=ConnectorTypes.P
     | "citigate" => Processors(CITIGATE)
     | "ilixium" => Processors(ILIXIUM)
     | "worldpayraft" => Processors(WORLDPAYRAFT)
+    | "mtn_mobile_money" => Processors(MTNMOBILEMONEY)
+    | "airtel_tigo_cash" => Processors(AIRTELTIGOCASH)
+    | "telecel_cash" => Processors(TELECELCASH)
+    | "ghipss" => Processors(GHIPSS)
     | _ => UnknownConnector("Not known")
     }
   | PayoutProcessor =>
@@ -1303,6 +1339,10 @@ let getConnectorNameTypeFromString = (connector, ~connectorType=ConnectorTypes.P
     | "santander" => PayoutProcessor(SANTANDER)
     | "deutschebank" => PayoutProcessor(DEUTSCHEBANK)
     | "gotyme_sanlam" => PayoutProcessor(GOTYME)
+    | "mtn_mobile_money" => PayoutProcessor(MTNMOBILEMONEY)
+    | "airtel_tigo_cash" => PayoutProcessor(AIRTELTIGOCASH)
+    | "telecel_cash" => PayoutProcessor(TELECELCASH)
+    | "ghipss" => PayoutProcessor(GHIPSS)
     | _ => UnknownConnector("Not known")
     }
   | ThreeDsAuthenticator =>
@@ -1473,6 +1513,10 @@ let getProcessorInfo = (connector: ConnectorTypes.processorTypes) => {
   | CITIGATE => citigateInfo
   | ILIXIUM => ilixiumInfo
   | WORLDPAYRAFT => worldpayraftInfo
+  | MTNMOBILEMONEY => mtnMobileMoneyInfo
+  | AIRTELTIGOCASH => airtelTigoCashInfo
+  | TELECELCASH => telecelCashInfo
+  | GHIPSS => ghipssInfo
   }
 }
 
@@ -1498,6 +1542,10 @@ let getPayoutProcessorInfo = (payoutconnector: ConnectorTypes.payoutProcessorTyp
   | SANTANDER => santanderInfo
   | DEUTSCHEBANK => deutscheBankInfo
   | GOTYME => gotymeInfo
+  | MTNMOBILEMONEY => mtnMobileMoneyInfo
+  | AIRTELTIGOCASH => airtelTigoCashInfo
+  | TELECELCASH => telecelCashInfo
+  | GHIPSS => ghipssInfo
   }
 }
 
@@ -2478,6 +2526,10 @@ let getDisplayNameForProcessor = (connector: ConnectorTypes.processorTypes) =>
   | CITIGATE => "Citigate"
   | ILIXIUM => "Ilixium"
   | WORLDPAYRAFT => "Worldpay Raft"
+  | MTNMOBILEMONEY => "MTN Mobile Money"
+  | AIRTELTIGOCASH => "Airtel Tigo Cash"
+  | TELECELCASH => "Telecel Cash"
+  | GHIPSS => "GHIPSS"
   }
 
 let getDisplayNameForPayoutProcessor = (payoutProcessor: ConnectorTypes.payoutProcessorTypes) =>
@@ -2502,6 +2554,10 @@ let getDisplayNameForPayoutProcessor = (payoutProcessor: ConnectorTypes.payoutPr
   | SANTANDER => "Santander"
   | DEUTSCHEBANK => "Deutsche Bank"
   | GOTYME => "GoTyme"
+  | MTNMOBILEMONEY => "MTN Mobile Money"
+  | AIRTELTIGOCASH => "Airtel Tigo Cash"
+  | TELECELCASH => "Telecel Cash"
+  | GHIPSS => "GHIPSS"
   }
 
 let getDisplayNameForThreedsAuthenticator = threeDsAuthenticator =>
