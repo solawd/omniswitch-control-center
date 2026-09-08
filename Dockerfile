@@ -7,7 +7,10 @@ ARG BUILD_TYPE=prod
 
 # The postinstall script configures git hooks, which requires a .git directory.
 # Git-URL build contexts don't include one, so initialize a fresh repo first.
-RUN git init -b main
+# An initial commit is needed too, since the build scripts read `git rev-parse HEAD`.
+RUN git init -b main \
+    && git add -A \
+    && git -c user.email=build@example.com -c user.name=build commit -q -m init
 RUN npm i
 RUN if [ "$BUILD_TYPE" = "embeddedapp" ]; then npm run build:embeddedapp; else npm run build:prod; fi
 FROM public.ecr.aws/docker/library/node:18-alpine
