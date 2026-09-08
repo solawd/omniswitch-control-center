@@ -147,6 +147,10 @@ type processorTypes =
   | CITIGATE
   | ILIXIUM
   | WORLDPAYRAFT
+  | MTNMOBILEMONEY
+  | AIRTELTIGOCASH
+  | TELECELCASH
+  | GHIPSS
 
 type payoutProcessorTypes =
   | ADYEN
@@ -169,6 +173,10 @@ type payoutProcessorTypes =
   | SANTANDER
   | DEUTSCHEBANK
   | GOTYME
+  | MTNMOBILEMONEY
+  | AIRTELTIGOCASH
+  | TELECELCASH
+  | GHIPSS
 
 type threeDsAuthenticatorTypes =
   | THREEDSECUREIO
