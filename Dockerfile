@@ -5,6 +5,9 @@ ENV NODE_OPTIONS="--max-old-space-size=4096"
 
 ARG BUILD_TYPE=prod
 
+# The postinstall script configures git hooks, which requires a .git directory.
+# Git-URL build contexts don't include one, so initialize a fresh repo first.
+RUN git init -b main
 RUN npm i
 RUN if [ "$BUILD_TYPE" = "embeddedapp" ]; then npm run build:embeddedapp; else npm run build:prod; fi
 FROM public.ecr.aws/docker/library/node:18-alpine
